@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Date With You 💕</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #fdf8f3;
+      --blush: #f5e6e0;
+      --rose: #e8b4b8;
+      --dusty-rose: #c9a9a6;
+      --terracotta: #b85c38;
+      --chocolate: #5c4033;
+      --soft-shadow: rgba(184, 92, 56, 0.15);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--cream);
+      color: var(--chocolate);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Floating hearts background */
+    .hearts-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 1.5rem;
+      opacity: 0.12;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .heart:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
+    .heart:nth-child(2) { left: 85%; top: 15%; animation-delay: 1.5s; }
+    .heart:nth-child(3) { left: 25%; top: 70%; animation-delay: 3s; }
+    .heart:nth-child(4) { left: 70%; top: 60%; animation-delay: 2s; }
+    .heart:nth-child(5) { left: 50%; top: 35%; animation-delay: 4s; }
+    .heart:nth-child(6) { left: 15%; top: 50%; animation-delay: 2.5s; }
+    .heart:nth-child(7) { left: 90%; top: 80%; animation-delay: 1s; }
+    .heart:nth-child(8) { left: 40%; top: 85%; animation-delay: 3.5s; }
+    .heart:nth-child(9) { left: 60%; top: 10%; animation-delay: 0.5s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.12; }
+      50% { transform: translateY(-20px) rotate(5deg); opacity: 0.2; }
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+
+    .card {
+      background: linear-gradient(145deg, rgba(253, 248, 243, 0.95) 0%, rgba(245, 230, 224, 0.9) 100%);
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      max-width: 480px;
+      box-shadow: 
+        0 25px 50px -12px var(--soft-shadow),
+        0 0 0 1px rgba(232, 180, 184, 0.3);
+      animation: cardIn 1s ease-out;
+    }
+
+    @keyframes cardIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .burger-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 5vw, 2.4rem);
+      font-weight: 600;
+      color: var(--terracotta);
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--dusty-rose);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.02em;
+    }
+
+    .message {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--chocolate);
+      margin-bottom: 2rem;
+      font-weight: 400;
+    }
+
+    .message strong {
+      color: var(--terracotta);
+      font-weight: 500;
+    }
+
+    .cta-wrapper {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 0.9rem 2rem;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .btn-yes {
+      background: linear-gradient(135deg, var(--terracotta), #a04a2e);
+      color: var(--cream);
+      box-shadow: 0 4px 15px var(--soft-shadow);
+    }
+
+    .btn-yes:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 8px 25px var(--soft-shadow);
+    }
+
+    .btn-yes:active {
+      transform: translateY(0);
+    }
+
+    .btn-maybe {
+      background: transparent;
+      color: var(--dusty-rose);
+      border: 2px solid var(--rose);
+    }
+
+    .btn-maybe:hover {
+      background: var(--blush);
+      color: var(--terracotta);
+      border-color: var(--terracotta);
+    }
+
+    .footer-note {
+      margin-top: 2.5rem;
+      font-size: 0.85rem;
+      color: var(--dusty-rose);
+      font-style: italic;
+    }
+
+    /* Confetti / celebration (optional, triggered by yes) */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: var(--rose);
+      top: 50%;
+      left: 50%;
+      pointer-events: none;
+      z-index: 100;
+      opacity: 0;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 2rem 1.5rem;
+      }
+      .cta-wrapper {
+        flex-direction: column;
+      }
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts-bg" aria-hidden="true">
+    <span class="heart">♥</span>
+    <span class="heart">♥</span>
+    <span class="heart">♥</span>
+    <span class="heart">♥</span>
+    <span class="heart">♥</span>
+    <span class="heart">♥</span>
+    <span class="heart">♥</span>
+    <span class="heart">♥</span>
+    <span class="heart">♥</span>
+  </div>
+
+  <main>
+    <article class="card">
+      <div class="burger-icon" aria-hidden="true">🍔</div>
+      <h1>Will you go on a date with me?</h1>
+      <p class="subtitle">(and let me cook for you)</p>
+      <p class="message">
+        I’d love to make you a <strong>home-cooked burger</strong> — just for you. 
+        No fancy restaurant, just us, good food, and a cozy time together. 
+        Say yes?
+      </p>
+      <div class="cta-wrapper">
+        <button class="btn btn-yes" type="button" id="btnYes">Yes, I’d love to! 💕</button>
+        <button class="btn btn-maybe" type="button" id="btnMaybe">Tell me more…</button>
+      </div>
+      <p class="footer-note">Made with love, for you.</p>
+    </article>
+  </main>
+
+  <script>
+    const btnYes = document.getElementById('btnYes');
+    const btnMaybe = document.getElementById('btnMaybe');
+
+    btnYes.addEventListener('click', () => {
+      btnYes.textContent = "It's a date! 💕";
+      btnYes.style.background = 'linear-gradient(135deg, #7cb85c, #5a9e45)';
+      btnMaybe.style.display = 'none';
+      // Simple confetti-like effect with hearts
+      for (let i = 0; i < 12; i++) {
+        setTimeout(() => {
+          const h = document.createElement('span');
+          h.className = 'heart';
+          h.textContent = '♥';
+          h.style.cssText = `
+            position: fixed;
+            left: ${50 + (Math.random() - 0.5) * 40}%;
+            top: ${50 + (Math.random() - 0.5) * 30}%;
+            font-size: ${1 + Math.random() * 1.5}rem;
+            color: #e8b4b8;
+            opacity: 0.8;
+            pointer-events: none;
+            z-index: 99;
+            animation: float 2s ease-out forwards;
+          `;
+          document.body.appendChild(h);
+          setTimeout(() => h.remove(), 2500);
+        }, i * 80);
+      }
+    });
+
+    btnMaybe.addEventListener('click', () => {
+      alert("It'll be just the two of us — I'll cook, you relax. Think: soft buns, juicy patty, and all the toppings you like. Plus your company. 💕");
+    });
+  </script>
+</body>
+</html>
